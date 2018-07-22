@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"user-event-store/user_event"
-	"user-event-store/health_check"
+	"user-event-store/endpoint/user_event"
+	"user-event-store/endpoint/health_check"
 )
 
 func main() {

@@ -2,9 +2,9 @@ package user_event
 
 import (
 	"net/http"
-	"user-event-store/validation"
-	"user-event-store/response"
-	"user-event-store/user_event/model"
+	"user-event-store/utility/validation"
+	"user-event-store/utility/response"
+	"user-event-store/endpoint/user_event/model"
 )
 
 func CreateUserEvent(w http.ResponseWriter, r *http.Request) {

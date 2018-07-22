@@ -2,7 +2,7 @@ package health_check
 
 import (
 	"net/http"
-	"user-event-store/response/model"
+	"user-event-store/utility/response/model"
 	"encoding/json"
 )
 

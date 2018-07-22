@@ -3,7 +3,7 @@ package response
 import (
 	"net/http"
 	"encoding/json"
-	"user-event-store/response/model"
+	"user-event-store/utility/response/model"
 )
 
 func HandleGenericResult(w http.ResponseWriter, validationError error) {
