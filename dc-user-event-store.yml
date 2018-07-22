@@ -1,12 +1,36 @@
 version: '2.1'
 
 services:
-  user-event-store:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+#  user-event-store:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    ports:
+#     - "8080:8080"
+#    restart: on-failure
+#    networks:
+#      - user-event-store
+
+  prometheus:
+    image: prom/prometheus:v2.3.2
+    expose:
+     - "9090"
+    restart: on-failure
+    networks:
+      - user-event-store
+
+  grafana:
+    image: grafana/grafana:5.2.1
     ports:
-     - "8080:8080"
+     - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED:  "true"
+      GF_DATABASE_TYPE: "sqlite3"
+    volumes:
+      - ./grafana/:/etc/grafana/provisioning/
     restart: on-failure
     networks:
       - user-event-store
