@@ -1,0 +1,16 @@
+version: '2.1'
+
+services:
+  user-event-store:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+     - "8080:8080"
+    restart: on-failure
+    networks:
+      - user-event-store
+
+networks:
+    user-event-store:
+      driver: bridge
