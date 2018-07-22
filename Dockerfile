@@ -11,7 +11,8 @@ COPY . ./
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix nocgo -o /app .
 
 # Create a clean image with compiled app
-FROM scratch
+FROM alpine:3.8
+RUN apk add --no-cache curl
 COPY --from=builder /app ./
 
 HEALTHCHECK CMD curl --fail http://localhost:8080/health || exit 1
