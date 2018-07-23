@@ -11,6 +11,17 @@ services:
 #    networks:
 #      - user-event-store
 
+  cassandra:
+    image: cassandra:3.11.2
+    restart: on-failure
+    ports:
+     - "9042:9042"
+    volumes:
+      - "./cassandra-init.sh:/cassandra-init.sh"
+    command: "sh /cassandra-init.sh"
+    networks:
+      - user-event-store
+
   prometheus:
     image: prom/prometheus:v2.3.2
     expose:

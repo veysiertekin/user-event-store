@@ -36,3 +36,11 @@
 [[constraint]]
   name = "github.com/prometheus/client_golang"
   version = "0.8.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/gocql/gocql"
+
+[[constraint]]
+  name = "github.com/damnever/cc"
+  version = "0.1.0"
