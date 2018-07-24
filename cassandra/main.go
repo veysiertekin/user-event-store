@@ -3,7 +3,7 @@ package cassandra
 import (
 	"fmt"
 	"github.com/gocql/gocql"
-	"user-event-store/configuration"
+	"user-event-store/management"
 )
 
 var Session *gocql.Session
@@ -11,12 +11,12 @@ var Session *gocql.Session
 func init() {
 	var err error
 
-	config := configuration.Data.Config("cassandra")
-	host := config.String("host")
-	keyspace := config.String("keyspace")
+	configuration := management.Configuration.Config("cassandra")
+	host := configuration.String("host")
+	keyspace := configuration.String("keyspace")
 
 	cluster := gocql.NewCluster(host)
-	cluster.Keyspace = configuration.Data.String(keyspace)
+	cluster.Keyspace = management.Configuration.String(keyspace)
 	Session, err = cluster.CreateSession()
 	if err != nil {
 		panic(err)

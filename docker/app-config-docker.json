@@ -1,0 +1,6 @@
+{
+  "cassandra": {
+    "host": "cassandra",
+    "keyspace": "test"
+  }
+}
