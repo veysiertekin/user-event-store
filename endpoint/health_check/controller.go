@@ -2,8 +2,8 @@ package health_check
 
 import (
 	"net/http"
-	"user-event-store/utility/response/model"
 	"user-event-store/utility/response"
+	"user-event-store/utility/response/model"
 )
 
 func SendHeartbeat(w http.ResponseWriter, r *http.Request) {

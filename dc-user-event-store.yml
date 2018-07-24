@@ -1,18 +1,18 @@
 version: '2.1'
 
 services:
-  user-event-store:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    ports:
-     - "8080:8080"
-    restart: on-failure
-    depends_on:
-      cassandra:
-        condition: service_healthy
-    networks:
-      - user-event-store
+#  user-event-store:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    ports:
+#     - "8080:8080"
+#    restart: on-failure
+#    depends_on:
+#      cassandra:
+#        condition: service_healthy
+#    networks:
+#      - user-event-store
 
   cassandra:
     image: cassandra:3.11.2

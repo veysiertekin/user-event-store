@@ -16,7 +16,8 @@ func init() {
 	keyspace := configuration.String("keyspace")
 
 	cluster := gocql.NewCluster(host)
-	cluster.Keyspace = management.Configuration.String(keyspace)
+	cluster.Keyspace = keyspace
+
 	Session, err = cluster.CreateSession()
 	if err != nil {
 		panic(err)
