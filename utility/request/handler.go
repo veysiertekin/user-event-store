@@ -13,15 +13,15 @@ func Handle(r *http.Request, w http.ResponseWriter, v validation.InputValidation
 	result := new(model.GenericResult)
 
 	if validationError == nil {
-		result = convert(postProcess())
+		result = wrapWithGenericTemplate(postProcess())
 	} else {
-		result = convert(nil, validationError)
+		result = wrapWithGenericTemplate(nil, validationError)
 	}
 
 	response.WriteResult(w, result)
 }
 
-func convert(data interface{}, err error) *model.GenericResult {
+func wrapWithGenericTemplate(data interface{}, err error) *model.GenericResult {
 	if err == nil {
 		result := model.Success()
 		result.Data = data
