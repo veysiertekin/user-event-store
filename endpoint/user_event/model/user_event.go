@@ -2,7 +2,6 @@ package model
 
 import (
 	"time"
-	"net/http"
 	"errors"
 )
 
@@ -15,17 +14,17 @@ var (
 type UserEvent struct {
 	ApiKey    string    `json:"apiKey,omitempty"`
 	UserId    int64     `json:"userId,omitempty"`
-	Timestamp time.Time `json:"timestamp,omitempty"`
+	EventTime time.Time `json:"timestamp,omitempty"`
 }
 
-func (user UserEvent) Validate(r *http.Request) error {
-	if &user.ApiKey == nil || len(user.ApiKey) == 0 {
+func (event UserEvent) Validate() error {
+	if &event.ApiKey == nil || len(event.ApiKey) == 0 {
 		return ErrInvalidApiKey
 	}
-	if &user.UserId == nil || user.UserId == 0 {
+	if &event.UserId == nil || event.UserId == 0 {
 		return ErrInvalidUserId
 	}
-	if &user.Timestamp == nil || user.Timestamp.IsZero() {
+	if &event.EventTime == nil || event.EventTime.IsZero() {
 		return ErrInvalidTimestamp
 	}
 	return nil

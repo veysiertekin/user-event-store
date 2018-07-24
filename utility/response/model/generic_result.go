@@ -1,8 +1,9 @@
 package model
 
 type GenericResult struct {
-	Status       Status `json:"status,omitempty"`
-	ErrorMessage string `json:"errorMessage,omitempty"`
+	Status       Status      `json:"status,omitempty"`
+	ErrorMessage string      `json:"errorMessage,omitempty"`
+	Data         interface{} `json:"data,omitempty"`
 }
 
 func Success() *GenericResult {
@@ -11,9 +12,9 @@ func Success() *GenericResult {
 	return result
 }
 
-func Error(errorMessage string) *GenericResult {
+func Error(err error) *GenericResult {
 	result := new(GenericResult)
 	result.Status = ERROR
-	result.ErrorMessage = errorMessage
+	result.ErrorMessage = err.Error()
 	return result
 }

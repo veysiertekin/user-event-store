@@ -11,5 +11,5 @@ func DecodeAndValidate(r *http.Request, v validation.InputValidation) error {
 		return err
 	}
 	defer r.Body.Close()
-	return v.Validate(r)
+	return v.Validate()
 }
