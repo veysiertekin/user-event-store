@@ -46,6 +46,18 @@
   revision = "e80d13ce29ede4452c43dea11e79b9bc8a15b478"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/reiver/go-oi"
+  packages = ["."]
+  revision = "431c83978379297f04f85f6eb94f129f25ab741d"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/reiver/go-telnet"
+  packages = ["."]
+  revision = "9ff0b2ab096ebe42bf8e2ffd1366e7ed2223b04c"
+
+[[projects]]
   name = "gopkg.in/inf.v0"
   packages = ["."]
   revision = "d2d2541c53f18d2a059457998ce2876cc8e67cbf"
@@ -60,6 +72,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "498d9346130b14dfd6a0b158f8270e6545d8bfe4d0fd2ae1f20c7d0dfacee3f3"
+  inputs-digest = "90f19d301c4e844d53e16abc3a4a1df167bc7ce10ee5f7481c1e169ab3fbf044"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -30,29 +30,33 @@ services:
     networks:
       - user-event-store
 
-#  prometheus:
-#    image: prom/prometheus:v2.3.2
-#    expose:
-#     - "9090"
-#    restart: on-failure
-#    networks:
-#      - user-event-store
-#
-#  grafana:
-#    image: grafana/grafana:5.2.1
-#    ports:
-#     - "3000:3000"
-#    environment:
-#      GF_SECURITY_ADMIN_USER: ${ADMIN_USER:-admin}
-#      GF_SECURITY_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
-#      GF_USERS_ALLOW_SIGN_UP: "false"
-#      GF_AUTH_ANONYMOUS_ENABLED:  "true"
-#      GF_DATABASE_TYPE: "sqlite3"
-#    volumes:
-#      - ./docker/grafana/:/etc/grafana/provisioning/
-#    restart: on-failure
-#    networks:
-#      - user-event-store
+  graphite:
+    image: graphiteapp/graphite-statsd:latest
+    ports:
+      - "81:80"
+      - "2003-2004:2003-2004"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
+    restart: on-failure
+    networks:
+      - user-event-store
+
+  grafana:
+    image: grafana/grafana:5.2.1
+    ports:
+     - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_AUTH_ANONYMOUS_ENABLED:  "true"
+      GF_DATABASE_TYPE: "sqlite3"
+    volumes:
+      - ./docker/grafana/:/etc/grafana/provisioning/
+    restart: on-failure
+    networks:
+      - user-event-store
 
 networks:
     user-event-store:

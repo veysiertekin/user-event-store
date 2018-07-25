@@ -15,14 +15,14 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "panels": [
     {
+      "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "Graphite",
       "fill": 1,
       "gridPos": {
         "h": 22,
@@ -48,8 +48,8 @@
       "links": [],
       "nullPointMode": "null as zero",
       "percentage": false,
-      "pointradius": 5,
-      "points": false,
+      "pointradius": 1,
+      "points": true,
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
@@ -63,7 +63,8 @@
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "target": "user-event-store.service.create-user-event"
         }
       ],
       "thresholds": [],
@@ -108,6 +109,7 @@
       }
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -115,7 +117,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {

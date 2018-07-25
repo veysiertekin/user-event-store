@@ -2,15 +2,15 @@
 apiVersion: 1
 
 deleteDatasources:
-  - name: Prometheus
+  - name: Graphite
     orgId: 1
 
 datasources:
-- name: Prometheus
-  type: prometheus
+- name: Graphite
+  type: graphite
   access: proxy
   orgId: 1
-  url: http://prometheus:9090
+  url: http://graphite
   password:
   user:
   database:

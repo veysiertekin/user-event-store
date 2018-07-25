@@ -1,9 +1,9 @@
 package cassandra
 
 import (
-	"fmt"
 	"github.com/gocql/gocql"
 	"user-event-store/management"
+	"log"
 )
 
 var Session *gocql.Session
@@ -22,5 +22,5 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("cassandra init done")
+	log.Printf("Cassandra init done")
 }

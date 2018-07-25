@@ -2,5 +2,9 @@
   "cassandra": {
     "host": "127.0.0.1",
     "keyspace": "test"
+  },
+  "graphite": {
+    "Host": "127.0.0.1",
+    "Port": 2003
   }
 }

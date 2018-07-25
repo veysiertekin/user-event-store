@@ -9,7 +9,7 @@ import (
 
 func CreateUserEvent(w http.ResponseWriter, r *http.Request) {
 	var event model.UserEvent
-	request.Handle(r, w, &event, func() (interface{}, error) {
+	request.Handle(r, w, &event, "create-user-event", func() (interface{}, error) {
 		return service.CreateUserEvent(event)
 	})
 }
