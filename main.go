@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"user-event-store/cassandra"
-	"user-event-store/endpoint/user_event"
-	"user-event-store/endpoint/health_check"
+	"user-event-store/app/client/cassandra"
+	"user-event-store/app/endpoint/user_event"
+	"user-event-store/app/endpoint/health_check"
 )
 
 func main() {

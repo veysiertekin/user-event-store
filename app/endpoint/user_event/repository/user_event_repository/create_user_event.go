@@ -1,8 +1,8 @@
 package user_event_repository
 
 import (
-	"user-event-store/endpoint/user_event/model"
-	"user-event-store/cassandra"
+	"user-event-store/app/client/cassandra"
+	"user-event-store/app/endpoint/user_event/model"
 )
 
 func CreateUserEvent(event model.UserEvent) (*model.UserEvent, error) {

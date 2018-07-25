@@ -3,7 +3,7 @@ package response
 import (
 	"net/http"
 	"encoding/json"
-	"user-event-store/utility/response/model"
+	"user-event-store/app/utility/response/model"
 )
 
 func WriteResult(w http.ResponseWriter, r *model.GenericResult) {

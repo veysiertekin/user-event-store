@@ -1,9 +1,9 @@
 package cassandra
 
 import (
-	"github.com/gocql/gocql"
-	"user-event-store/management"
 	"log"
+	"github.com/gocql/gocql"
+	"user-event-store/app/management"
 )
 
 var Session *gocql.Session

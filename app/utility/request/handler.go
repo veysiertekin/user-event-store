@@ -3,13 +3,13 @@ package request
 import (
 	"fmt"
 	"net/http"
-	"user-event-store/graphite"
-	"user-event-store/utility/response"
-	"user-event-store/utility/response/model"
-	"user-event-store/utility/validation"
+	"user-event-store/app/client/graphite"
+	"user-event-store/app/utility/response"
+	"user-event-store/app/utility/response/model"
+	"user-event-store/app/utility/validation"
 	"time"
-	"user-event-store/utility/time_helper"
-	"user-event-store/utility/panic_helper"
+	"user-event-store/app/utility/time_helper"
+	"user-event-store/app/utility/panic_helper"
 )
 
 const maxWaitDurationInMilliseconds = 100

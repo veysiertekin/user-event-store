@@ -2,7 +2,7 @@ package telnet
 
 import (
 	"github.com/reiver/go-telnet"
-	"user-event-store/utility/panic_helper"
+	"user-event-store/app/utility/panic_helper"
 	"log"
 )
 

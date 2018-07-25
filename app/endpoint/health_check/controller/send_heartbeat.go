@@ -2,8 +2,8 @@ package controller
 
 import (
 	"net/http"
-	"user-event-store/utility/response"
-	"user-event-store/utility/response/model"
+	"user-event-store/app/utility/response"
+	"user-event-store/app/utility/response/model"
 )
 
 func SendHeartbeat(w http.ResponseWriter, r *http.Request) {

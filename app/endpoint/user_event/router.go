@@ -2,7 +2,7 @@ package user_event
 
 import (
 	"github.com/gorilla/mux"
-	"user-event-store/endpoint/user_event/controller"
+	"user-event-store/app/endpoint/user_event/controller"
 )
 
 func RegisterRoutes(router *mux.Router) {

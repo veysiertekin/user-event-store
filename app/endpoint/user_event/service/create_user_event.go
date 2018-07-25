@@ -2,9 +2,9 @@ package service
 
 import (
 	"errors"
-	"user-event-store/endpoint/user_event/model"
-	"user-event-store/endpoint/user_event/repository/api_key_repository"
-	"user-event-store/endpoint/user_event/repository/user_event_repository"
+	"user-event-store/app/endpoint/user_event/model"
+	"user-event-store/app/endpoint/user_event/repository/api_key_repository"
+	"user-event-store/app/endpoint/user_event/repository/user_event_repository"
 )
 
 func CreateUserEvent(event model.UserEvent) (data interface{}, err error) {

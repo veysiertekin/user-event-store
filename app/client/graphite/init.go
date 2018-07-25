@@ -2,10 +2,10 @@ package graphite
 
 import (
 	"fmt"
-	"user-event-store/management"
-	"user-event-store/utility/telnet"
 	"log"
 	"time"
+	"user-event-store/app/management"
+	"user-event-store/app/utility/telnet"
 )
 
 var Client *ClientWrapper

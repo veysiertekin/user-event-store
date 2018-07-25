@@ -2,7 +2,7 @@ package health_check
 
 import (
 	"github.com/gorilla/mux"
-	"user-event-store/endpoint/health_check/controller"
+	"user-event-store/app/endpoint/health_check/controller"
 )
 
 func RegisterRoutes(router *mux.Router) {

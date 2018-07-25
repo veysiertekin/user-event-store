@@ -3,7 +3,7 @@ package request
 import (
 	"net/http"
 	"encoding/json"
-	"user-event-store/utility/validation"
+	"user-event-store/app/utility/validation"
 )
 
 func DecodeAndValidate(r *http.Request, v validation.InputValidation) error {
