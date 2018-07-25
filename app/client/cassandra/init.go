@@ -17,6 +17,7 @@ func init() {
 
 	cluster := gocql.NewCluster(host)
 	cluster.Keyspace = keyspace
+	//cluster.ReconnectionPolicy = &gocql.ConstantReconnectionPolicy{MaxRetries: 12, Interval: 500 * time.Millisecond}
 
 	Session, err = cluster.CreateSession()
 	if err != nil {

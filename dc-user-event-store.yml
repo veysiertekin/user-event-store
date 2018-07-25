@@ -25,8 +25,8 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - "./docker/cassandra-init.sh:/cassandra-init.sh"
-    command: "sh /cassandra-init.sh"
+      - "./docker/cassandra/init.sh:/init.sh"
+    command: "sh /init.sh"
     networks:
       - user-event-store
 
@@ -38,6 +38,9 @@ services:
       - "2023-2024:2023-2024"
       - "8125:8125/udp"
       - "8126:8126"
+    volumes:
+      - "./docker/graphite/carbon.conf:/opt/graphite/conf/carbon.conf"
+      - "./docker/graphite/carbon.conf:/etc/graphite-statsd/conf/opt/graphite/conf/carbon.conf"
     restart: on-failure
     networks:
       - user-event-store

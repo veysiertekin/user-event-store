@@ -64,7 +64,8 @@
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
-          "target": "user-event-store.service.create-user-event"
+          "target": "aggregate(user-event-store.service.create-user-event, 'count')",
+          "textEditor": true
         }
       ],
       "thresholds": [],
