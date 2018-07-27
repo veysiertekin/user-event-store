@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "\n This script will be running in a infinite loop. To stop it use Ctrl+C"
+echo "\n This script will be running in an infinite loop. To stop it use Ctrl+C"
 echo "\n"
 
 while :
