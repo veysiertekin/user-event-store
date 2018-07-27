@@ -10,7 +10,11 @@ type Communicator struct {
 	ServerAddress string // "host:port"
 }
 
-func (communicator Communicator) WriteMessage(message string) (err error) {
+func (communicator Communicator) WriteString(message string) (err error) {
+	return communicator.WriteByte([]byte(message))
+}
+
+func (communicator Communicator) WriteByte(message []byte) (err error) {
 	defer panic_helper.RecoverOnError(&err)
 	log.Printf("Message is currently being sent... <%s>", message)
 

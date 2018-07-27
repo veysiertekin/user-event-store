@@ -1,54 +1,103 @@
 version: '2.1'
 
 services:
-#  user-event-store:
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile
-#    ports:
-#     - "8080:8080"
-#    restart: on-failure
-#    depends_on:
-#      cassandra:
-#        condition: service_healthy
-#    networks:
-#      - user-event-store
+  #user-event-store:
+  #  build:
+  #    context: ./
+  #    dockerfile: Dockerfile
+  #  ports:
+  #  - "8080:8080"
+  #  restart: on-failure
+  #  depends_on:
+  #    cassandra:
+  #      condition: service_healthy
+  #  networks:
+  #  - user-event-store
 
   cassandra:
     image: cassandra:3.11.2
-    restart: on-failure
     ports:
-     - "9042:9042"
+    - "9042:9042"
+    volumes:
+    - "./docker/cassandra/import.cql:/import.cql"
+    - "./docker/cassandra/init.sh:/init.sh"
+    command: "sh /init.sh"
     healthcheck:
       test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
       interval: 30s
       timeout: 10s
       retries: 5
-    volumes:
-      - "./docker/cassandra/init.sh:/init.sh"
-    command: "sh /init.sh"
-    networks:
-      - user-event-store
-
-  graphite:
-    image: graphiteapp/graphite-statsd:latest
-    ports:
-      - "81:80"
-      - "2003-2004:2003-2004"
-      - "2023-2024:2023-2024"
-      - "8125:8125/udp"
-      - "8126:8126"
-    volumes:
-      - "./docker/graphite/carbon.conf:/opt/graphite/conf/carbon.conf"
-      - "./docker/graphite/carbon.conf:/etc/graphite-statsd/conf/opt/graphite/conf/carbon.conf"
     restart: on-failure
     networks:
-      - user-event-store
+    - user-event-store
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.2
+    ports:
+    - "5601:5601"
+    volumes:
+    - "./docker/kibana/config/:/usr/share/kibana/config:ro"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:5601 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure
+    networks:
+    - user-event-store
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
+    ports:
+    - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: on-failure
+    networks:
+    - user-event-store
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.3.2
+    ports:
+    - "5000:5000"
+    volumes:
+    - ./docker/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+    - ./docker/logstash/pipeline:/usr/share/logstash/pipeline:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9600"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: on-failure
+    networks:
+    - user-event-store
+
+  #metricbeat:
+  #  image: docker.elastic.co/beats/metricbeat:6.3.2
+  #  depends_on:
+  #    elasticsearch:
+  #      condition: service_healthy
+  #  volumes:
+  #  - "./docker/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml"
+  #  healthcheck:
+  #    test: metricbeat test config
+  #    interval: 30s
+  #    timeout: 15s
+  #    retries: 5
+  #  restart: on-failure
+  #  networks:
+  #  - user-event-store
 
   grafana:
     image: grafana/grafana:5.2.1
     ports:
-     - "3000:3000"
+    - "3000:3000"
     environment:
       GF_SECURITY_ADMIN_USER: ${ADMIN_USER:-admin}
       GF_SECURITY_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
@@ -56,11 +105,16 @@ services:
       GF_AUTH_ANONYMOUS_ENABLED:  "true"
       GF_DATABASE_TYPE: "sqlite3"
     volumes:
-      - ./docker/grafana/:/etc/grafana/provisioning/
+    - ./docker/grafana/:/etc/grafana/provisioning/
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     restart: on-failure
     networks:
-      - user-event-store
+    - user-event-store
 
 networks:
-    user-event-store:
-      driver: bridge
+  user-event-store:
+    driver: bridge

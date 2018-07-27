@@ -3,6 +3,10 @@
     "host": "cassandra",
     "keyspace": "test"
   },
+  "logstash": {
+    "Host": "logstash",
+    "Port": 5000
+  },
   "graphite": {
     "Host": "graphite",
     "Port": 2003

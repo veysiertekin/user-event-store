@@ -3,6 +3,10 @@
     "host": "127.0.0.1",
     "keyspace": "test"
   },
+  "logstash": {
+    "Host": "127.0.0.1",
+    "Port": 5000
+  },
   "graphite": {
     "Host": "127.0.0.1",
     "Port": 2003

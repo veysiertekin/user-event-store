@@ -1,22 +1,21 @@
 package request
 
 import (
-	"fmt"
-	"net/http"
-	"user-event-store/app/client/graphite"
-	"user-event-store/app/utility/response"
-	"user-event-store/app/utility/response/model"
-	"user-event-store/app/utility/validation"
 	"time"
+	"net/http"
+	"user-event-store/app/utility/validation"
 	"user-event-store/app/utility/time_helper"
 	"user-event-store/app/utility/panic_helper"
+	"user-event-store/app/utility/response"
+	"user-event-store/app/utility/response/metric"
+	"user-event-store/app/utility/response/model"
 )
 
 const maxWaitDurationInMilliseconds = 100
 
 func Handle(r *http.Request, w http.ResponseWriter, v validation.InputValidation, serviceName string, postProcess func() (data interface{}, err error)) {
 	startTime := time.Now()
-	defer sendMetric(startTime, serviceName)
+	defer metric.SendResponseTimeMetricAsync(startTime, serviceName)
 
 	result := validateAndExecute(r, v, postProcess)
 
@@ -49,10 +48,4 @@ func wrapWithGenericTemplate(data interface{}, err error) *model.GenericResult {
 	} else {
 		return model.Error(err)
 	}
-}
-
-func sendMetric(startTime time.Time, serviceName string) {
-	duration := time.Since(startTime)
-	timePassed := time_helper.ToMilliSeconds(duration)
-	graphite.Client.SendMetricAsync("user-event-store.service."+serviceName, fmt.Sprintf("%.6f", timePassed))
 }

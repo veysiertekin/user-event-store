@@ -16,7 +16,7 @@ type ClientWrapper struct {
 
 func (client ClientWrapper) SendMetricAsync(key string, value string) {
 	message := fmt.Sprintf("%s %s %d", key, value, time.Now().Unix())
-	go client.Communicator.WriteMessage(message)
+	go client.Communicator.WriteString(message)
 }
 
 func init() {
