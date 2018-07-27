@@ -44,7 +44,7 @@ user-event-store_user-event-store_1   ./app                            Up (healt
 
 ## Generate Metric Data
 
-You can use `generate-metric-data.sh` script for generating server-response-time metrics. 
+You can use `generate-metric-data.sh` script for generating server-response-time metrics. Script requires `python 2.7`
 
 ```bash
 ➜  sh ./generate-metric-data.sh 

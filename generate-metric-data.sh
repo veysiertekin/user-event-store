@@ -7,6 +7,16 @@ do
     printf "."
     for i in {1 .. 10}
     do
+        #
+        # Sample payload:
+        # {
+        #	"apiKey":"TEST_API_KEY",
+        #	"userId":2,
+        #	"timestamp": "2018-07-22T05:41:10.003+06:00"
+        # }
+
+        datetime=$(python -c "from datetime import datetime; print(datetime.now().isoformat()+\"+00:00\")" )
+
         curl --silent -X POST \
           http://127.0.0.1:8080/user-event/ \
           -H 'Cache-Control: no-cache' \
@@ -15,7 +25,7 @@ do
           -d "{ \
             \"apiKey\":\"TEST_API_KEY\",
             \"userId\":2,
-            \"timestamp\": \"2018-07-22T05:41:10.003+06:00\"
+            \"timestamp\": \"$datetime\"
         }" > /dev/null &
     done
 	sleep 1
