@@ -21,7 +21,6 @@ do
           http://127.0.0.1:8080/user-event/ \
           -H 'Cache-Control: no-cache' \
           -H 'Content-Type: application/json' \
-          -H 'Postman-Token: 86b5bbf9-01bc-454c-b4ea-a12159ca36b2' \
           -d "{ \
             \"apiKey\":\"TEST_API_KEY\",
             \"userId\":2,
