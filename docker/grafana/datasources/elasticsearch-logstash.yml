@@ -12,4 +12,4 @@ datasources:
   url: http://elasticsearch:9200
   jsonData:
     timeField: "@timestamp"
-  editable: true
+#  editable: true

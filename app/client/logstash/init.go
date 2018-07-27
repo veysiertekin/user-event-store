@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"user-event-store/app/management"
-	"user-event-store/app/utility/telnet"
+	"user-event-store/app/client/telnet"
 	"encoding/json"
 )
 

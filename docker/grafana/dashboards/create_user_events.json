@@ -27,7 +27,7 @@
       "fill": 1,
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -84,7 +84,7 @@
           "timeField": "@timestamp"
         },
         {
-          "alias": "<5ms",
+          "alias": "1~5ms",
           "bucketAggs": [
             {
               "field": "@timestamp",
@@ -113,7 +113,7 @@
           "timeField": "@timestamp"
         },
         {
-          "alias": "<10ms",
+          "alias": "5~10ms",
           "bucketAggs": [
             {
               "field": "@timestamp",
@@ -141,7 +141,7 @@
           "timeField": "@timestamp"
         },
         {
-          "alias": "<20ms",
+          "alias": "10~20ms",
           "bucketAggs": [
             {
               "field": "@timestamp",
@@ -169,7 +169,7 @@
           "timeField": "@timestamp"
         },
         {
-          "alias": "<50ms",
+          "alias": "20~50ms",
           "bucketAggs": [
             {
               "field": "@timestamp",
@@ -198,7 +198,7 @@
           "timeField": "@timestamp"
         },
         {
-          "alias": "<100ms",
+          "alias": "50~100ms",
           "bucketAggs": [
             {
               "field": "@timestamp",
@@ -259,7 +259,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Create User Events - Response Time Distribution for Count",
+      "title": "Create User Events - Response Time Distribution by Ranges",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -297,7 +297,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [],
@@ -305,7 +305,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -334,7 +334,7 @@
     ]
   },
   "timezone": "",
-  "title": "New dashboard",
+  "title": "Service Response Time",
   "uid": "PJmDo0Kmz",
   "version": 1
 }
